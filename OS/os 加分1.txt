@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<sys/types.h>
+int main(){
+    pid_t pid,pid2;
+    pid=fork();
+    if(pid==0){ //child
+        printf("EEE\t");    //api轉成write()的system call  或\n也可以清空
+        fflush(stdout);
+        pid2=fork();
+        if(pid2!=0)
+        {
+            wait(NULL);
+            printf("SSS\t");
+            
+        }
+        else{
+            printf("AAA\t");
+          
+        }
+    }
+    else{
+        wait(NULL);
+        printf("YYY\t");
+        
+    }
+    return 0;
+}

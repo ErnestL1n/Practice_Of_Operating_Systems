@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<sys/types.h>
+int main(){
+    pid_t pid,pid2;
+    printf("statement1\n");
+    pid=fork();
+    if(pid==0){                //child
+        pid2=fork();
+        if(pid2==0)
+        {
+             printf("statement2\n");
+        }
+        else{
+            wait(NULL);
+            printf("statement3\n");
+        }
+        printf("statement4\n");
+    }
+    else{                     //parent
+        wait(NULL);
+    }
+     printf("statement5\n");
+    return 0;
+}
